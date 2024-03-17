@@ -9,43 +9,26 @@ public class Order
 
     private Order() { }
 
-    public Guid Id { get; private set; }
+    public OrderId Id { get; private set; }
 
-    public Guid CustomerId { get; private set; }
+    public CustomerId CustomerId { get; private set; }
 
-    public static Order Create(Customer customer)
+    public static Order Create(CustomerId customerId)
     {
         var order = new Order
         {
-            Id = Guid.NewGuid(),
-            CustomerId = customer.Id
+            Id = new OrderId(Guid.NewGuid()),
+            CustomerId = customerId
         };
 
         return order;
     }
 
-    public void Add(Product product)
+    public void Add(ProductId productId, Money price)
     {
-        var lineItem = new LineItem(Guid.NewGuid(), Id, product.Id, product.Price);
+
+        var lineItemId = new LineItemId(Guid.NewGuid());
+        var lineItem = new LineItem(lineItemId, Id, productId, price);
         _lineItems.Add(lineItem);
     }
-}
-
-public class LineItem
-{
-    internal LineItem(Guid id, Guid orderId, Guid productId, Money price)
-    {
-        Id = id;
-        OrderId = orderId;
-        ProductId = productId;
-        Price = price;
-    }
-
-    public Guid Id { get; private set; }
-
-    public Guid OrderId { get; private set; }
-
-    public Guid ProductId { get; private set; }
-
-    public Money Price { get; private set; }
 }
