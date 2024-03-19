@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Application", "DDD.Appl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Domain", "DDD.Domain\DDD.Domain.csproj", "{B6D00B75-305D-4AD5-B058-5B3515F61BBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Infrastructure", "DDD.Infrastructure\DDD.Infrastructure.csproj", "{FB75DCE7-6F64-4910-9819-5F29D4BB91AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDD.Infrastructure", "DDD.Infrastructure\DDD.Infrastructure.csproj", "{FB75DCE7-6F64-4910-9819-5F29D4BB91AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.DataAccess", "DDD.DataAccess\DDD.DataAccess.csproj", "{DD0D1C50-7DED-440D-8FE3-2385F360AB41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Service", "DDD.Service\DDD.Service.csproj", "{00B11210-01BE-46ED-9517-8EF762E62331}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{FB75DCE7-6F64-4910-9819-5F29D4BB91AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB75DCE7-6F64-4910-9819-5F29D4BB91AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB75DCE7-6F64-4910-9819-5F29D4BB91AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0D1C50-7DED-440D-8FE3-2385F360AB41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD0D1C50-7DED-440D-8FE3-2385F360AB41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0D1C50-7DED-440D-8FE3-2385F360AB41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD0D1C50-7DED-440D-8FE3-2385F360AB41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00B11210-01BE-46ED-9517-8EF762E62331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B11210-01BE-46ED-9517-8EF762E62331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B11210-01BE-46ED-9517-8EF762E62331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B11210-01BE-46ED-9517-8EF762E62331}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

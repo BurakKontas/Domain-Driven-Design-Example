@@ -31,4 +31,13 @@ public class Order
         var lineItem = LineItem.Create(Id, productId, price);
         _lineItems.Add(lineItem);
     }
+
+    public void RemoveLineItem(LineItemId lineItemId)
+    {
+        var lineItem = _lineItems.SingleOrDefault(li => li.Id == lineItemId);
+        if (lineItem is not null)
+        {
+            _lineItems.Remove(lineItem);
+        }
+    }
 }
