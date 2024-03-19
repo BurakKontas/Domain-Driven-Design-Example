@@ -4,7 +4,7 @@ namespace DDD.Domain.Orders;
 
 public class LineItem
 {
-    private LineItem(LineItemId id, OrderId orderId, ProductId productId, Money price)
+    internal LineItem(LineItemId id, OrderId orderId, ProductId productId, Money price)
     {
         Id = id;
         OrderId = orderId;
@@ -12,13 +12,11 @@ public class LineItem
         Price = price;
     }
 
+    internal LineItem(OrderId orderId, ProductId productId, Money price)
+        : this(new LineItemId(Guid.NewGuid()), orderId, productId, price) { }
+
     internal LineItem() { }
 
-    public static LineItem Create(OrderId orderId, ProductId productId, Money price)
-    {
-        var id = new LineItemId(Guid.NewGuid());
-        return new LineItem(id, orderId, productId, price);
-    }
 
     public LineItemId Id { get; private set; }
 

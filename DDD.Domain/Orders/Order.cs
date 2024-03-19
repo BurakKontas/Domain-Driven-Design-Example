@@ -28,7 +28,7 @@ public class Order
 
     public void AddLineItem(ProductId productId, Money price)
     {
-        var lineItem = LineItem.Create(Id, productId, price);
+        var lineItem = new LineItem(Id, productId, price);
         _lineItems.Add(lineItem);
     }
 
