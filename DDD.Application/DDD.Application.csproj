@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\Customers\" />
     <Folder Include="Commands\Products\" />
-    <Folder Include="Commands\Orders\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 

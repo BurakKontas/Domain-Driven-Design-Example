@@ -82,7 +82,7 @@ public class CustomerServiceTests
         var customerService = new CustomerService(customerRepositoryMock.Object);
 
         // Act
-        customerService.UpdateAsync(customer);
+        await customerService.UpdateAsync(customer);
 
         // Assert
         customerRepositoryMock.Verify(repo => repo.UpdateAsync(customer, default), Times.Once);
@@ -99,7 +99,7 @@ public class CustomerServiceTests
         var customerService = new CustomerService(customerRepositoryMock.Object);
 
         // Act
-        customerService.DeleteAsync(expectedCustomer.Id);
+        await customerService.DeleteAsync(expectedCustomer.Id);
 
         // Assert
         customerRepositoryMock.Verify(repo => repo.DeleteAsync(expectedCustomer, default), Times.Once);
@@ -115,23 +115,9 @@ public class CustomerServiceTests
         var customerService = new CustomerService(customerRepositoryMock.Object);
 
         // Act
-        customerService.DeleteAsync(customerId);
+        await customerService.DeleteAsync(customerId);
 
         // Assert
         customerRepositoryMock.Verify(repo => repo.DeleteAsync(It.IsAny<Customer>(), default), Times.Never);
-    }
-
-    [Fact]
-    public async Task SaveChangesAsync_Should_Save_Changes()
-    {
-        // Arrange
-        var customerRepositoryMock = new Mock<ICustomerRepository>();
-        var customerService = new CustomerService(customerRepositoryMock.Object);
-
-        // Act
-        await customerService.SaveChangesAsync();
-
-        // Assert
-        customerRepositoryMock.Verify(repo => repo.SaveChangesAsync(default), Times.Once);
     }
 }

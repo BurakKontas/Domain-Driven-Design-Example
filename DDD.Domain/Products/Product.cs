@@ -20,7 +20,7 @@ public class Product
         Sku = sku;
     }
 
-    public static Product Create(string name, Money price, Sku sku)
+    public static Product? Create(string name, Money price, Sku sku)
     {
         var product = new Product(new ProductId(Guid.NewGuid()), name, price, sku);
         return product;

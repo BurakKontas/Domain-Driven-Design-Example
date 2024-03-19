@@ -23,18 +23,16 @@ public abstract class BaseRepository<TEntity, TId>(ApplicationDbContext context)
         await context.Set<TEntity>().AddAsync(entity, cancellationToken);
     }
 
-    public void UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
+    public Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         context.Entry(entity).State = EntityState.Modified;
+        return Task.CompletedTask;
     }
 
-    public void DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
+    public Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         context.Set<TEntity>().Remove(entity);
+        return Task.CompletedTask;
     }
 
-    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        await context.SaveChangesAsync(cancellationToken);
-    }
 }

@@ -59,7 +59,7 @@ public class ProductServiceTests
     public async Task GetAllAsync_Should_Return_All_Products()
     {
         // Arrange
-        var expectedProducts = new List<Product>
+        var expectedProducts = new List<Product?>
         {
             Product.Create("Product", new Money("USD", 100), Sku.Create("123456789012345")),
             Product.Create("Product", new Money("USD", 100), Sku.Create("123456789012345"))
@@ -84,7 +84,7 @@ public class ProductServiceTests
         var productService = new ProductService(productRepositoryMock.Object);
 
         // Act
-        productService.UpdateAsync(product);
+        await productService.UpdateAsync(product);
 
         // Assert
         productRepositoryMock.Verify(repo => repo.UpdateAsync(product, CancellationToken.None), Times.Once);
@@ -101,7 +101,7 @@ public class ProductServiceTests
         var productService = new ProductService(productRepositoryMock.Object);
 
         // Act
-        productService.DeleteAsync(productId);
+        await productService.DeleteAsync(productId);
 
         // Assert
         productRepositoryMock.Verify(repo => repo.DeleteAsync(product, CancellationToken.None), Times.Once);
@@ -116,7 +116,7 @@ public class ProductServiceTests
         var productService = new ProductService(productRepositoryMock.Object);
 
         // Act
-        productService.DeleteAsync(productId);
+        await productService.DeleteAsync(productId);
 
         // Assert
         productRepositoryMock.Verify(repo => repo.DeleteAsync(It.IsAny<Product>(), CancellationToken.None),

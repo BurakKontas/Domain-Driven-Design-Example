@@ -2,6 +2,7 @@
 using DDD.Domain.Customers;
 using DDD.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DDD.Tests.Unit.Repository;
 

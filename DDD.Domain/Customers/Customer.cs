@@ -17,7 +17,7 @@ public class Customer
         Name = name;
     }
 
-    public static Customer Create(string email, string name)
+    public static Customer? Create(string email, string name)
     {
         var customer = new Customer(new CustomerId(Guid.NewGuid()), email, name);
         return customer;

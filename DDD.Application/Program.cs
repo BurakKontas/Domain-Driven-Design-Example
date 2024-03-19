@@ -1,8 +1,10 @@
+using DDD.Application.Behaviors;
 using DDD.DataAccess.Contracts;
 using DDD.DataAccess.Repositories;
 using DDD.Infrastructure;
 using DDD.Service.Contracts;
 using DDD.Service.Services;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,7 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

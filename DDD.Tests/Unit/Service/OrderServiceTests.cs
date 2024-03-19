@@ -58,7 +58,7 @@ public class OrderServiceTests
     public async Task GetAllAsync_Should_Return_All_Orders()
     {
         // Arrange
-        var expectedOrders = new List<Order> { Order.Create(new CustomerId(Guid.NewGuid())), Order.Create(new CustomerId(Guid.NewGuid())) };
+        var expectedOrders = new List<Order?> { Order.Create(new CustomerId(Guid.NewGuid())), Order.Create(new CustomerId(Guid.NewGuid())) };
         var orderRepositoryMock = new Mock<IOrderRepository>();
         orderRepositoryMock.Setup(repo => repo.GetAllAsync(CancellationToken.None)).ReturnsAsync(expectedOrders);
         var orderService = new OrderService(orderRepositoryMock.Object);
@@ -79,7 +79,7 @@ public class OrderServiceTests
         var orderService = new OrderService(orderRepositoryMock.Object);
 
         // Act
-        orderService.UpdateAsync(order);
+        await orderService.UpdateAsync(order);
 
         // Assert
         orderRepositoryMock.Verify(repo => repo.UpdateAsync(order, CancellationToken.None), Times.Once);
@@ -95,7 +95,7 @@ public class OrderServiceTests
         var orderService = new OrderService(orderRepositoryMock.Object);
 
         // Act
-        orderService.DeleteAsync(order.Id);
+        await orderService.DeleteAsync(order.Id);
 
         // Assert
         orderRepositoryMock.Verify(repo => repo.DeleteAsync(order, CancellationToken.None), Times.Once);
@@ -110,7 +110,7 @@ public class OrderServiceTests
         var orderService = new OrderService(orderRepositoryMock.Object);
 
         // Act
-        orderService.DeleteAsync(orderId);
+        await orderService.DeleteAsync(orderId);
 
         // Assert
         orderRepositoryMock.Verify(repo => repo.DeleteAsync(It.IsAny<Order>(), CancellationToken.None), Times.Never);

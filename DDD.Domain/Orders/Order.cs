@@ -15,7 +15,7 @@ public class Order
 
     public IReadOnlyCollection<LineItem> LineItems => _lineItems.ToList();
 
-    public static Order Create(CustomerId customerId)
+    public static Order? Create(CustomerId customerId)
     {
         var order = new Order
         {
