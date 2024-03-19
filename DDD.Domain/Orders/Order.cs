@@ -5,13 +5,15 @@ namespace DDD.Domain.Orders;
 
 public class Order
 {
-    private readonly HashSet<LineItem> _lineItems = new();
+    private readonly HashSet<LineItem> _lineItems = [];
 
     private Order() { }
 
     public OrderId Id { get; private set; }
 
     public CustomerId CustomerId { get; private set; }
+
+    public IReadOnlyCollection<LineItem> LineItems => _lineItems.ToList();
 
     public static Order Create(CustomerId customerId)
     {
@@ -24,11 +26,9 @@ public class Order
         return order;
     }
 
-    public void Add(ProductId productId, Money price)
+    public void AddLineItem(ProductId productId, Money price)
     {
-
-        var lineItemId = new LineItemId(Guid.NewGuid());
-        var lineItem = new LineItem(lineItemId, Id, productId, price);
+        var lineItem = LineItem.Create(Id, productId, price);
         _lineItems.Add(lineItem);
     }
 }
