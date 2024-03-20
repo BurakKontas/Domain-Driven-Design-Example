@@ -1,8 +1,10 @@
 ﻿using DDD.DataAccess.Repositories;
 using DDD.Domain.Customers;
 using DDD.Infrastructure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Moq;
 
 namespace DDD.Tests.Unit.Repository;
 
@@ -11,12 +13,15 @@ public class CustomerRepositoryTests : IDisposable
     private readonly ApplicationDbContext _context;
     private readonly CustomerRepository _repository;
 
+
     public CustomerRepositoryTests()
     {
+        Mock<IPublisher> publisherMock = new();
+
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
-        _context = new ApplicationDbContext(options);
+        _context = new ApplicationDbContext(options, publisherMock.Object);
         _repository = new CustomerRepository(_context);
     }
 

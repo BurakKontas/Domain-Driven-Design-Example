@@ -2,8 +2,10 @@
 using DDD.Domain.Customers;
 using DDD.Domain.Orders;
 using DDD.Infrastructure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Moq;
 
 namespace DDD.Tests.Unit.Repository;
 
@@ -14,10 +16,11 @@ public class OrderRepositoryTests : IDisposable
 
     public OrderRepositoryTests()
     {
+        Mock<IPublisher> publisherMock = new();
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
-        _context = new ApplicationDbContext(options);
+        _context = new ApplicationDbContext(options, publisherMock.Object);
         _repository = new OrderRepository(_context);
     }
 

@@ -2,7 +2,7 @@
 using DDD.Service.Contracts;
 using MediatR;
 
-namespace DDD.Application.Commands.Orders.GetOrder;
+namespace DDD.Application.Queries.GetOrderSummary;
 
 internal sealed class GetOrderSummaryQueryHandler(IOrderSummaryService orderSummaryService) : IRequestHandler<GetOrderSummaryQuery, OrderSummary?>
 {

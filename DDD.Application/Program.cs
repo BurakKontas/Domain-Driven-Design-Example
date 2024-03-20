@@ -4,6 +4,7 @@ using DDD.DataAccess.Repositories;
 using DDD.Infrastructure;
 using DDD.Service.Contracts;
 using DDD.Service.Services;
+using MassTransit;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,13 +20,23 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderSummaryRepository, OrderSummaryRepository>();
 
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderSummaryService, OrderSummaryService>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionBehavior<,>));
+
+builder.Services.AddMassTransit(cfg =>
+{
+    cfg.UsingInMemory((context, busFactoryConfigurator) =>
+    {
+        busFactoryConfigurator.ConfigureEndpoints(context);
+    });
+});
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

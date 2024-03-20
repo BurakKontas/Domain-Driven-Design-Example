@@ -1,7 +1,9 @@
 ﻿using DDD.DataAccess.Repositories;
 using DDD.Domain.Products;
 using DDD.Infrastructure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 
 namespace DDD.Tests.Unit.Repository;
 
@@ -12,10 +14,12 @@ public class ProductRepositoryTests : IDisposable
 
     public ProductRepositoryTests()
     {
+        Mock<IPublisher> publisherMock = new();
+
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
-        _context = new ApplicationDbContext(options);
+        _context = new ApplicationDbContext(options, publisherMock.Object);
         _repository = new ProductRepository(_context);
     }
 

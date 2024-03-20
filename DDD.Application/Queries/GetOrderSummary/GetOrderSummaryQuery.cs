@@ -1,6 +1,6 @@
 ﻿using DDD.Domain.Orders;
 using MediatR;
 
-namespace DDD.Application.Commands.Orders.GetOrder;
+namespace DDD.Application.Queries.GetOrderSummary;
 
 public record GetOrderSummaryQuery(Guid OrderId) : IRequest<OrderSummary?>;

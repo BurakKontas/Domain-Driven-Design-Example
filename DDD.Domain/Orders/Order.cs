@@ -1,9 +1,10 @@
 ﻿using DDD.Domain.Customers;
+using DDD.Domain.Primitives;
 using DDD.Domain.Products;
 
 namespace DDD.Domain.Orders;
 
-public class Order
+public class Order : Entity
 {
     private readonly HashSet<LineItem> _lineItems = [];
 
@@ -23,6 +24,8 @@ public class Order
             CustomerId = customerId
         };
 
+        order.Raise(new OrderCreatedDomainEvent(Guid.NewGuid(), order.Id));
+
         return order;
     }
 
@@ -38,6 +41,8 @@ public class Order
         if (lineItem is not null)
         {
             _lineItems.Remove(lineItem);
+
+            Raise(new LineItemRemovedEvent(Guid.NewGuid(), Id, lineItemId));
         }
     }
 }
