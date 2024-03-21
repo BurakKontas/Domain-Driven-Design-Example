@@ -40,8 +40,8 @@ builder.Services.AddMassTransit(cfg =>
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    //options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("DDD.Application"));
-    options.UseInMemoryDatabase("DDD");
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("DDD.Application"));
+    //options.UseInMemoryDatabase("DDD");
 });
 
 var app = builder.Build();

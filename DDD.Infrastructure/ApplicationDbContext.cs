@@ -42,8 +42,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        //optionsBuilder.UseNpgsql();
-        optionsBuilder.UseInMemoryDatabase("DDD");
+        optionsBuilder.UseNpgsql();
+        //optionsBuilder.UseInMemoryDatabase("DDD");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

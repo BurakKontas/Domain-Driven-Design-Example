@@ -32,6 +32,7 @@
     <ProjectReference Include="..\DDD.DataAccess\DDD.DataAccess.csproj" />
     <ProjectReference Include="..\DDD.Domain\DDD.Domain.csproj" />
     <ProjectReference Include="..\DDD.Infrastructure\DDD.Infrastructure.csproj" />
+    <ProjectReference Include="..\DDD.IntegrationEvents\DDD.IntegrationEvents.csproj" />
     <ProjectReference Include="..\DDD.Service\DDD.Service.csproj" />
   </ItemGroup>
 
